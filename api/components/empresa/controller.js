@@ -6,27 +6,28 @@ function agregarEmpresa( dato ) {
     })
 }
 
-function obtenerEmpresa( filtro ) {
+function obtenerEmpresa( filtro_empresa ) {
     return new Promise((resolve, reject) => {
-        resolve( storage.obtener( filtro ) )
+        resolve( storage.obtener( filtro_empresa ))
     })
 }
 
-function actualizarEmpresa( dato ) {
+function actualizarEmpresa( empresa ) {
     return new Promise((resolve, reject) => {
-        let empresa = {
-            ruc: dato.ruc,
-            nombre: dato.nombre,
-            domicilio: dato.domicilio,
-            telefono: dato.telefono
+        let resultado = storage.actualizar(empresa)
+        if (resultado){
+            return resolve(empresa)
+        }else{
+            return reject('No existe empresa')
         }
-        resolve( storage.actualizar( empresa ) )
+        
     })
 }
 
-function eliminarEmpresa( dato ) {
+function eliminarEmpresa( empresa ) {
     return new Promise((resolve, reject) => {
-        resolve( storage.eliminar( dato ) )
+        storage.eliminar( empresa )
+        resolve(empresa)
     })    
 }
 

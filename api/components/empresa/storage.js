@@ -1,35 +1,36 @@
-const model = require('./model')
+const Model = require('./model')
 
 async function agregarEmpresa(dato){
     const resultado = await new Model(dato)
     return resultado.save()
 }
 
-async function obtenerEmpresa(filtro){
-    let mi_filtro = {}
+async function obtenerEmpresa(filtro_empresa){
+    let filtro = {}
     
-    if(filtro.ruc != null){
-        mi_filtro = {pais: filtro.ruc}
+    if(filtro_empresa){
+        filtro = {ruc: filtro_empresa}
     }
 
-    const resultado = await Model.find(mi_filtro)
+    const resultado = await Model.find(filtro)
     return resultado
 }
 
-async function actualizarEmpresa(dato){
-    const nuevo_objeto = await Model.findOne({pais: dato.ruc})
+async function actualizarEmpresa(empresa){
+    const objeto = await Model.findOne({_id: empresa.id})
     
-    nuevo_objeto.nombre = dato.nombre
-    nuevo_objeto.domicilio = dato.domicilio
-    nuevo_objeto.telefono = dato.telefono
-
-    const resultado = await nuevo_objeto.save()
-    return resultado
+    if (objeto){
+        objeto.nombre = empresa.nombre
+        objeto.domicilio = empresa.domicilio
+        objeto.telefono = empresa.telefono
+        return resultado  = await objeto.save()
+    }else{
+        return null
+    }
 }
 
-async function eliminarEmpresa(dato){
-    const resultado = await Model.deleteOne({pais: dato.ruc})
-    return resultado
+async function eliminarEmpresa(empresa){
+    return await Model.deleteOne({_id: empresa.id})
 }
 
 module.exports = {
