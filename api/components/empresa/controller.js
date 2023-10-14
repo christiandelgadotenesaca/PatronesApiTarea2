@@ -15,7 +15,7 @@ function obtenerEmpresa( filtro ) {
 function actualizarEmpresa( dato ) {
     return new Promise((resolve, reject) => {
         let empresa = {
-            RUC: dato.RUC,
+            ruc: dato.ruc,
             nombre: dato.nombre,
             domicilio: dato.domicilio,
             telefono: dato.telefono

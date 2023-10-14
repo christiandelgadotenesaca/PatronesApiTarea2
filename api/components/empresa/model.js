@@ -7,10 +7,10 @@ const req_string = {
 }
 
 const empresa_schema = new Schema({
-    RUC: req_string,
-    nombre: req_string,
+    ruc: String,
+    nombre: String,
     domicilio: String,
-    telefono: String
+    telefono: String,
 })
 
 const model = mongoose.model('Empresa', empresa_schema)

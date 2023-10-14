@@ -8,8 +8,8 @@ async function agregarEmpresa(dato){
 async function obtenerEmpresa(filtro){
     let mi_filtro = {}
     
-    if(filtro.RUC != null){
-        mi_filtro = {pais: filtro.RUC}
+    if(filtro.ruc != null){
+        mi_filtro = {pais: filtro.ruc}
     }
 
     const resultado = await Model.find(mi_filtro)
@@ -17,7 +17,7 @@ async function obtenerEmpresa(filtro){
 }
 
 async function actualizarEmpresa(dato){
-    const nuevo_objeto = await Model.findOne({pais: dato.RUC})
+    const nuevo_objeto = await Model.findOne({pais: dato.ruc})
     
     nuevo_objeto.nombre = dato.nombre
     nuevo_objeto.domicilio = dato.domicilio
@@ -28,7 +28,7 @@ async function actualizarEmpresa(dato){
 }
 
 async function eliminarEmpresa(dato){
-    const resultado = await Model.deleteOne({pais: dato.RUC})
+    const resultado = await Model.deleteOne({pais: dato.ruc})
     return resultado
 }
 

@@ -6,7 +6,7 @@ async function conectar( url ) {
     await db.connect( url, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        dbname: 'tarea2'
+        dbname: 'tarea'
     } )
     .then (() => console.log('[db] - conexion exitosa.') )
     .catch( (error) => console.error( `[db] - ${error}` ) )
